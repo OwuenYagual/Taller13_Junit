@@ -140,4 +140,16 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La resolución de la expresión con resultado negativo falló.");
     }
+    
+     @Test
+    @DisplayName("Test: Resolver una expresion con denominador igual a cero")
+    public void testSolve04() {
+        String formula = "5/0";
+        // Dado que la clase no maneja errores, esto podría arrojar una excepción
+        // Se puede capturar y verificar que se lanza una ArithmeticException
+        Exception exception = assertThrows(ArithmeticException.class, () -> {
+            Operations.Solve(formula);
+        });
+        assertEquals("/ by zero", exception.getMessage(), "Se esperaba una excepción de división por cero");
+    }
 }
