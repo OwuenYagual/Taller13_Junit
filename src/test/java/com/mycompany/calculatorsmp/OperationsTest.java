@@ -123,5 +123,12 @@ public class OperationsTest {
         assertEquals(expected, result, "La evaluación de la expresión 4*20+33+15 es incorrecta");
     }
     
-    
+    @Test
+    @DisplayName("Evaluar la expresión 100/10*2 con el método Solve")
+    public void testSolve02() {
+        String formula = "100/10*2";
+        String expected = "100/10*2=20";
+        String result = Operations.Solve(formula);
+        assertEquals(expected, result, "La evaluación de la expresión 100/10*2 es incorrecta");
+    }
 }
