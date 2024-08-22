@@ -85,6 +85,24 @@ public class OperationsTest {
         boolean isValid = formula.matches("[0-9+\\-*/]+");
         assertTrue(isValid, "La fórmula generada contiene caracteres inválidos.");
     }
+    
+    @Test
+    @DisplayName("Verificar que MakeFormula genera diferentes fórmulas consecutivamente")
+    public void testMakeFormula03() {
+        String previousFormula = Operations.MakeFormula();
+        boolean differentFound = false;
+
+        for (int i = 0; i < 100; i++) {
+            String currentFormula = Operations.MakeFormula();
+            if (!currentFormula.equals(previousFormula)) {
+                differentFound = true;
+                break;
+            }
+            previousFormula = currentFormula;
+        }
+
+        assertTrue(differentFound, "MakeFormula generó la misma fórmula en todas las ejecuciones consecutivas");
+    }
 
     /**
      * Tests of Solve method, of class Operations.
