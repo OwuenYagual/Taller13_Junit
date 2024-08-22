@@ -152,4 +152,13 @@ public class OperationsTest {
         });
         assertEquals("/ by zero", exception.getMessage(), "Se esperaba una excepción de división por cero");
     }
+    
+    @Test
+    @DisplayName("Test: Resolver una expresion con muchos operadores y con resultado negativo")
+    public void testSolve05() {
+        String formula = "5+3*2-8/4*3-7";
+        String expected = "5+3*2-8/4*3-7=-2"; // Resultado esperado
+        String result = Operations.Solve(formula);
+        assertEquals(expected, result, "La expresión 5+3*2-8/4*3-7 debería dar -2");
+    }
 }
