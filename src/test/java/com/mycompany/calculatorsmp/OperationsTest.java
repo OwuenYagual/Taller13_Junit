@@ -131,4 +131,13 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La evaluación de la expresión 100/10*2 es incorrecta");
     }
+    
+    @Test
+    @DisplayName("Test: Resolver una expresión que termina en número negativo")
+    public void testSolve03() {
+        String formula = "2-10";
+        String expected = "2-10=-8";
+        String result = Operations.Solve(formula);
+        assertEquals(expected, result, "La resolución de la expresión con resultado negativo falló.");
+    }
 }
