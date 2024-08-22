@@ -19,22 +19,22 @@ import org.junit.jupiter.api.DisplayName;
  * @author oweny
  */
 public class OperationsTest {
-    
+
     public OperationsTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -65,7 +65,7 @@ public class OperationsTest {
         // Verifica que todos los operadores (+, -, *, /) fueron seleccionados
         assertArrayEquals(expectedOperators, operators.toArray(), "El metodo MakeFormula no incluye la operacion de division");
     }
-    
+
     @Test
     @DisplayName("Test: Verificar que la fórmula no sea nula, vacía y contenga operadores válidos")
     void testMakeFormula02() {
@@ -85,7 +85,7 @@ public class OperationsTest {
         boolean isValid = formula.matches("[0-9+\\-*/]+");
         assertTrue(isValid, "La fórmula generada contiene caracteres inválidos.");
     }
-    
+
     @Test
     @DisplayName("Verificar que MakeFormula genera diferentes fórmulas consecutivamente")
     public void testMakeFormula03() {
@@ -103,20 +103,19 @@ public class OperationsTest {
 
         assertTrue(differentFound, "MakeFormula generó la misma fórmula en todas las ejecuciones consecutivas");
     }
-    
+
     @Test
     @DisplayName("Evaluar que la formula generada tenga un formato correcto")
     public void testMakeFormula04() {
-    String formula = Operations.MakeFormula();
-    assertFalse(formula.startsWith("+") || formula.startsWith("-") || 
-                formula.startsWith("*") || formula.startsWith("/"), 
+        String formula = Operations.MakeFormula();
+        assertFalse(formula.startsWith("+") || formula.startsWith("-")
+                || formula.startsWith("*") || formula.startsWith("/"),
                 "MakeFormula generó una fórmula que comienza con un operador.");
-    
-    assertFalse(formula.endsWith("+") || formula.endsWith("-") || 
-                formula.endsWith("*") || formula.endsWith("/"), 
+
+        assertFalse(formula.endsWith("+") || formula.endsWith("-")
+                || formula.endsWith("*") || formula.endsWith("/"),
                 "MakeFormula generó una fórmula que termina con un operador.");
     }
-
 
     /**
      * Tests of Solve method, of class Operations.
@@ -136,7 +135,7 @@ public class OperationsTest {
         // Comparar el resultado con el valor esperado
         assertEquals(expected, result, "La evaluación de la expresión 4*20+33+15 es incorrecta");
     }
-    
+
     @Test
     @DisplayName("Evaluar la expresión 100/10*2 con el método Solve")
     public void testSolve02() {
@@ -145,7 +144,7 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La evaluación de la expresión 100/10*2 es incorrecta");
     }
-    
+
     @Test
     @DisplayName("Test: Resolver una expresión que termina en número negativo")
     public void testSolve03() {
@@ -154,8 +153,8 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La resolución de la expresión con resultado negativo falló.");
     }
-    
-     @Test
+
+    @Test
     @DisplayName("Test: Resolver una expresion con denominador igual a cero")
     public void testSolve04() {
         String formula = "5/0";
@@ -166,7 +165,7 @@ public class OperationsTest {
         });
         assertEquals("/ by zero", exception.getMessage(), "Se esperaba una excepción de división por cero");
     }
-    
+
     @Test
     @DisplayName("Test: Resolver una expresion con muchos operadores y con resultado negativo")
     public void testSolve05() {
@@ -175,4 +174,13 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La expresión 5+3*2-8/4*3-7 debería dar -2");
     }
-}
+
+    @Test
+    @DisplayName("Test: Resolver una expresion con espacios en blanco")
+    public void testSolve06() {
+        String formula = "4 * 5 + 3";
+        String expected = "4*5+3=23";
+        String result = Operations.Solve(formula.replaceAll(" ", ""));
+        assertEquals(expected, result, "La evaluación de la expresión con espacios en blanco es incorrecta.");
+    }
+}    
