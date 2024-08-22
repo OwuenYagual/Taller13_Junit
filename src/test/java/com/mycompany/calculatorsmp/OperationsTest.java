@@ -103,6 +103,20 @@ public class OperationsTest {
 
         assertTrue(differentFound, "MakeFormula generó la misma fórmula en todas las ejecuciones consecutivas");
     }
+    
+    @Test
+    @DisplayName("Evaluar que la formula generada tenga un formato correcto")
+    public void testMakeFormula04() {
+    String formula = Operations.MakeFormula();
+    assertFalse(formula.startsWith("+") || formula.startsWith("-") || 
+                formula.startsWith("*") || formula.startsWith("/"), 
+                "MakeFormula generó una fórmula que comienza con un operador.");
+    
+    assertFalse(formula.endsWith("+") || formula.endsWith("-") || 
+                formula.endsWith("*") || formula.endsWith("/"), 
+                "MakeFormula generó una fórmula que termina con un operador.");
+    }
+
 
     /**
      * Tests of Solve method, of class Operations.
