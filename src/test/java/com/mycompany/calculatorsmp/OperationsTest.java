@@ -107,7 +107,21 @@ public class OperationsTest {
     /**
      * Tests of Solve method, of class Operations.
      */
-    
+    @Test
+    @DisplayName("Evaluar la expresión 4*20+33+15 con el método Solve")
+    public void testSolve01() {
+        // Expresión a evaluar
+        String formula = "4*20+33+15";
+
+        // Resultado esperado
+        String expected = "4*20+33+15=128";
+
+        // Ejecutar el método Solve
+        String result = Operations.Solve(formula);
+
+        // Comparar el resultado con el valor esperado
+        assertEquals(expected, result, "La evaluación de la expresión 4*20+33+15 es incorrecta");
+    }
     
     
 }
